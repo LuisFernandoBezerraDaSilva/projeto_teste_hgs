@@ -1,5 +1,5 @@
 const BaseController = require('./baseController');
-const ValueService = require('../services/valueService');
+const TaskService = require('../services/taskService');
 
 class TaskController extends BaseController {
   constructor(service) {
@@ -7,5 +7,5 @@ class TaskController extends BaseController {
   }
 }
 
-const valueService = new ValueService();
-module.exports = new TaskController(valueService);
+const taskService = new TaskService();
+module.exports = new TaskController(taskService);

@@ -1,7 +1,7 @@
 const express = require('express');
 const authenticateToken = require('../middlewares/authenticateToken');
 const authController = require('../controllers/authController');
-const valueController = require('../controllers/valueController');
+const taskController = require('../controllers/taskController');
 
 const router = express.Router();
 
@@ -15,6 +15,6 @@ router.get('/protected', authenticateToken, (req, res) => {
 
 router.post('/login', (req, res) => authController.login(req, res));
 
-router.get('/value', authenticateToken, (req, res) => valueController.getAll(req, res));
+router.get('/task', authenticateToken, (req, res) => taskController.getAll(req, res));
 
 module.exports = router;

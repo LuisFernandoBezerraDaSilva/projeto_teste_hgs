@@ -49,7 +49,7 @@ export class LoginPageComponent extends BasePageComponent {
       next: (response) => {
         console.log('Login successful', response);
         this.storageService.setToken(response.token);
-        this.router.navigate(['/list']);
+        this.router.navigate(['/tasks']);
       },
       error: (err) => {
         console.error('Login failed', err);
