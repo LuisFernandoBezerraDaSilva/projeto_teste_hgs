@@ -47,3 +47,22 @@
     width: 100%; 
     margin-top: 16px;
   }
+
+  .actions-column {
+    width: 10%;
+    text-align: right;
+  }
+
+  .actions-column-title {
+    width: 10%;
+    text-align: center;
+  }
+
+  .id-column {
+    max-width: 100px;
+    width: 100px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
