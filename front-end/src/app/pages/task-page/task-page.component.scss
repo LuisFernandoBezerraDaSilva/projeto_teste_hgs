@@ -31,3 +31,19 @@
     display: flex;
     justify-content: center;
   }
+
+  .mat-mdc-header-cell{
+    background-color: #6b6b6b !important; 
+    color: #fff !important;
+  }
+
+  table.mat-table th.mat-header-cell {
+    background-color: #f000; 
+    font-weight: bold;
+    color: #000 !important;
+  }
+
+  table{
+    width: 100%; 
+    margin-top: 16px;
+  }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
@@ -17,6 +17,7 @@ import { TaskService } from '../../services/task.service';
     MatCardModule,
     FormsModule,
     MatSnackBarModule,
+    MatTableModule,
     SharedModule
   ],
   providers: [TaskService],
@@ -25,6 +26,7 @@ import { TaskService } from '../../services/task.service';
 })
 export class TaskPageComponent implements OnInit {
   tasks: any[] = []; // Array para armazenar as tarefas
+  displayedColumns: string[] = ['id', 'title', 'description', 'actions']; // Define as colunas da tabela
 
   constructor(private taskService: TaskService) {}
 
