@@ -65,6 +65,15 @@ export class TaskPageComponent implements OnInit {
 
   createNewTask(): void {
     this.router.navigate(['/task']); 
-    console.log('Nova Tarefa clicada');
+  }
+
+  editTask(task: any): void {
+    this.router.navigate(['/task'], {
+      queryParams: {
+        taskId: task.id,
+        title: task.title,
+        description: task.description
+      }
+    }); 
   }
 }
