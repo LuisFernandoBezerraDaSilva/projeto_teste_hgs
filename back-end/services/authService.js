@@ -10,7 +10,6 @@ class AuthService extends BaseService {
     const authSchema = Joi.object({
       username: Joi.string().required(),
       password: Joi.string().required(),
-      role: Joi.number().required(),
     });
     super(prisma.user, authSchema);
   }
@@ -26,7 +25,13 @@ class AuthService extends BaseService {
       throw new Error('Invalid credentials');
     }
 
-    const token = jwt.sign({ id: user.id, role: user.role }, 'your_secret_key', { expiresIn: '1h' });
+    const token = jwt.sign({ id: user.id }, 'your_secret_key', { expiresIn: '1h' });
+
+    await this.model.update({
+      where: { id: user.id },
+      data: { token },
+    });
+
     return { token, userId: user.id };
   }
 }
