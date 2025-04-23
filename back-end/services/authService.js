@@ -27,7 +27,7 @@ class AuthService extends BaseService {
     }
 
     const token = jwt.sign({ id: user.id, role: user.role }, 'your_secret_key', { expiresIn: '1h' });
-    return { token };
+    return { token, userId: user.id };
   }
 }
 

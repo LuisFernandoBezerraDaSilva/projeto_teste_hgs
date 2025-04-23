@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { SharedModule } from '../../shared.module';
 import { TaskService } from '../../services/task.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-page',
@@ -28,7 +29,11 @@ export class TaskPageComponent implements OnInit {
   tasks: any[] = []; // Array para armazenar as tarefas
   displayedColumns: string[] = ['id', 'title', 'description', 'actions']; // Define as colunas da tabela
 
-  constructor(private taskService: TaskService, private snackBar: MatSnackBar) {}
+  constructor(
+    private taskService: TaskService, 
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.fetchTasks();
@@ -56,5 +61,10 @@ export class TaskPageComponent implements OnInit {
         this.snackBar.open('Erro ao deletar tarefa!', 'Fechar', { duration: 3000 });
       }
     });
+  }
+
+  createNewTask(): void {
+    this.router.navigate(['/task']); 
+    console.log('Nova Tarefa clicada');
   }
 }

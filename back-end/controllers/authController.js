@@ -10,8 +10,8 @@ class AuthController extends BaseController {
     const { username, password } = req.body;
 
     try {
-      const { token } = await this.service.authenticate(username, password);
-      res.status(200).json({ token });
+      const { token, userId } = await this.service.authenticate(username, password);
+      res.status(200).json({ token, userId });
     } catch (error) {
       res.status(401).json({ error: error.message });
     }

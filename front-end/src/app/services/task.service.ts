@@ -18,4 +18,8 @@ export class TaskService extends BaseService<any> {
   deleteTask(taskId: number) {
     return this.delete('task', taskId);
   }
+
+  createTask(task: { title: string; description: string ; userId: number }) {
+    return this.create('task', task);
+  }
 }

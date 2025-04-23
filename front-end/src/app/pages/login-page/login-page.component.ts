@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthService } from '../../services/auth.service';
 import { StorageService } from '../../services/storage.service';
-import { SharedModule } from '../../shared.module';
 import { BasePageComponent } from '../base-page/base-page.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared.module';
 
 @Component({
   selector: 'app-login-page',
@@ -34,8 +33,8 @@ export class LoginPageComponent extends BasePageComponent {
   password: string = '';
 
   constructor(
-    private authService: AuthService, 
-    private storageService: StorageService, 
+    private authService: AuthService,
+    private storageService: StorageService,
     private router: Router,
     private snackBar: MatSnackBar
   ) {
@@ -47,8 +46,9 @@ export class LoginPageComponent extends BasePageComponent {
     const loginSubscription = this.authService.login({ username: this.username, password: this.password }).subscribe({
       next: (response) => {
         console.log('Login successful', response);
-        this.storageService.setToken(response.token);
-        this.router.navigate(['/tasks']);
+        this.storageService.setToken(response.token); 
+        this.storageService.setUserId(response.userId); 
+        this.router.navigate(['/tasks']); 
       },
       error: (err) => {
         console.error('Login failed', err);
@@ -59,12 +59,12 @@ export class LoginPageComponent extends BasePageComponent {
         }
       }
     });
-  
+
     this.addSubscription(loginSubscription);
   }
 
   createAccount(): void {
     console.log('Redirecionar para a página de criação de conta');
-    this.router.navigate(['/users']); 
+    this.router.navigate(['/user']);
   }
 }
