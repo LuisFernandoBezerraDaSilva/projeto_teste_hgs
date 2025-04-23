@@ -1,1 +1,14 @@
-<p>task-page works!</p>
+    <mat-card>
+    <mat-card-title>TESTE</mat-card-title>
+    <mat-card-content>
+        <div>
+            <h1>Lista de Tarefas</h1>
+            <ul>
+                <li *ngFor="let task of tasks">
+                <h3>{{ task.title }}</h3>
+                <p>{{ task.description }}</p>
+                </li>
+            </ul>
+            </div>
+    </mat-card-content>
+    </mat-card>

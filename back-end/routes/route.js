@@ -17,4 +17,10 @@ router.post('/login', (req, res) => authController.login(req, res));
 
 router.get('/task', authenticateToken, (req, res) => taskController.getAll(req, res));
 
+router.post('/task', authenticateToken, (req, res) => taskController.create(req, res)); 
+router.get('/task', authenticateToken, (req, res) => taskController.getAll(req, res)); 
+router.get('/task/:id', authenticateToken, (req, res) => taskController.getOne(req, res)); 
+router.put('/task/:id', authenticateToken, (req, res) => taskController.update(req, res)); 
+router.delete('/task/:id', authenticateToken, (req, res) => taskController.delete(req, res)); 
+
 module.exports = router;
