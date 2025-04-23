@@ -1,0 +1,27 @@
+services:
+  api:
+    build:
+      context: ./ # Define o diretório raiz do projeto como contexto
+      dockerfile: ./Dockerfile # Caminho correto para o Dockerfile dentro do diretório `back-end`
+    ports:
+      - "3000:3000" # Mapeia a porta 3000 do container para a porta 3000 do host
+    environment:
+      DATABASE_URL: "postgresql://user:password@db:5432/database" # Ajuste conforme necessário
+    volumes:
+      - ./:/app # Mapeia o diretório raiz do projeto para o container
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: database
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

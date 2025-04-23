@@ -1,0 +1,23 @@
+# Use uma imagem base do Node.js
+FROM node:18
+
+# Defina o diretório de trabalho dentro do container
+WORKDIR /app
+
+# Copie o package.json e o package-lock.json
+COPY package*.json ./
+
+# Instale as dependências
+RUN npm install
+
+# Copie o restante do código para o container
+COPY . .
+
+# Gere o Prisma Client dentro do container
+RUN npx prisma generate --schema=prisma/schema.prisma
+
+# Exponha a porta que a API usa
+EXPOSE 3000
+
+# Comando para executar as migrations, a seed e iniciar a API
+CMD ["sh", "-c", "npx prisma migrate deploy && npm run seed && npm start"]

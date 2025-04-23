@@ -5,6 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node prisma/seed.js",
+    "start": "node index.js",
     "pm2-start": "pm2 start index.js --name luis-back-end",
     "pm2-stop": "pm2 stop luis-back-end"
   },
@@ -14,7 +15,7 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.2.1",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",

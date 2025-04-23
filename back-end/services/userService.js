@@ -1,7 +1,7 @@
 const BaseService = require('./baseService');
 const { PrismaClient } = require('@prisma/client');
 const userSchema = require('../schemas/userSchema');
-const bcrypt = require('bcrypt'); // Importa o bcrypt para encriptação
+const bcrypt = require('bcryptjs'); // Importa o bcrypt para encriptação
 const prisma = new PrismaClient();
 
 class UserService extends BaseService {
