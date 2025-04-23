@@ -15,7 +15,6 @@ import { BasePageComponent } from '../base-page/base-page.component';
   selector: 'app-login-page',
   standalone: true,
   imports: [
-    CommonModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
@@ -66,7 +65,6 @@ export class LoginPageComponent extends BasePageComponent {
 
   createAccount(): void {
     console.log('Redirecionar para a página de criação de conta');
-    // Aqui você pode implementar a lógica para redirecionar para a página de criação de conta
-    // Exemplo: this.router.navigate(['/register']);
+    this.router.navigate(['/users']); 
   }
 }

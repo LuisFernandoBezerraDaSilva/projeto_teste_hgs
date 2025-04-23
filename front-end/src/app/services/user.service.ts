@@ -6,13 +6,13 @@ import { StorageService } from './storage.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TaskService extends BaseService<any> {
-  
+export class UserService extends BaseService<any> {
+
   constructor(http: HttpClient, storageService: StorageService) {
-    super(http, storageService);
+    super(http, storageService); 
   }
 
-  getAllTasks() {
-    return this.getAll('task'); 
+  createUser(user: { username: string; password: string }) {
+    return this.create('users', user); 
   }
 }
