@@ -63,4 +63,10 @@ export class LoginPageComponent extends BasePageComponent {
   
     this.addSubscription(loginSubscription);
   }
+
+  createAccount(): void {
+    console.log('Redirecionar para a página de criação de conta');
+    // Aqui você pode implementar a lógica para redirecionar para a página de criação de conta
+    // Exemplo: this.router.navigate(['/register']);
+  }
 }
