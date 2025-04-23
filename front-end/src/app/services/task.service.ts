@@ -7,12 +7,15 @@ import { StorageService } from './storage.service';
   providedIn: 'root'
 })
 export class TaskService extends BaseService<any> {
-  
   constructor(http: HttpClient, storageService: StorageService) {
     super(http, storageService);
   }
 
   getAllTasks() {
     return this.getAll('task'); 
+  }
+
+  deleteTask(taskId: number) {
+    return this.delete('task', taskId);
   }
 }

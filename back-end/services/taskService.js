@@ -1,6 +1,6 @@
 const BaseService = require('./baseService');
 const { PrismaClient } = require('@prisma/client');
-const taskSchema = require('../schemas/taskSchema'); // Atualize o nome do schema, se necessário
+const taskSchema = require('../schemas/taskSchema'); 
 const prisma = new PrismaClient();
 
 class TaskService extends BaseService {

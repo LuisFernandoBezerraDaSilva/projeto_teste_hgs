@@ -5,7 +5,6 @@ const prisma = new PrismaClient();
 async function main() {
   const saltRounds = 10;
 
-  // Criação do usuário admin com senha criptografada
   const adminPassword = bcrypt.hashSync('admin123', saltRounds);
 
   const admin = await prisma.user.create({
@@ -15,7 +14,6 @@ async function main() {
     },
   });
 
-  // Adicionando tarefas para o usuário admin
   await prisma.task.createMany({
     data: [
       {
