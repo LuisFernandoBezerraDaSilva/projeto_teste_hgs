@@ -5,23 +5,25 @@ const jwt = require('jsonwebtoken');
 const authenticateToken = async (req, res, next) => {
   const token = req.headers['authorization']?.split(' ')[1];
   if (!token) {
-    return res.status(403).json({ message: 'Token not provided' });
+    return res.status(403).json({ message: 'Access denied' });
   }
 
   try {
-    const decoded = jwt.verify(token, 'your_secret_key');
+    const secretKey = process.env.JWT_SECRET || 'default_secret_key';
+    const decoded = jwt.verify(token, secretKey);
+
     const user = await prisma.user.findUnique({
-      where: { id: decoded.id }
+      where: { id: decoded.id },
     });
 
-    if (!user) {
-      return res.status(403).json({ message: 'User not found' });
+    if (!user || user.tokenRevoked) {
+      return res.status(403).json({ message: 'Access denied' });
     }
 
     req.user = user;
     next();
   } catch (err) {
-    return res.status(403).json({ message: 'Invalid token' });
+    return res.status(403).json({ message: 'Access denied' });
   }
 };
 

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ActivatedRoute } from '@angular/router';
 import { UserFormPageComponent } from './user-form-page.component';
 
 describe('UserFormPageComponent', () => {
@@ -7,11 +7,15 @@ describe('UserFormPageComponent', () => {
   let fixture: ComponentFixture<UserFormPageComponent>;
 
   beforeEach(async () => {
+    const activatedRouteSpy = { snapshot: { params: {} } }; // Mock básico do ActivatedRoute
+
     await TestBed.configureTestingModule({
-      imports: [UserFormPageComponent]
-    })
-    .compileComponents();
-    
+      imports: [UserFormPageComponent],
+      providers: [
+        { provide: ActivatedRoute, useValue: activatedRouteSpy } // Adicionado mock do ActivatedRoute
+      ]
+    }).compileComponents();
+
     fixture = TestBed.createComponent(UserFormPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

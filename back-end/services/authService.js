@@ -18,6 +18,18 @@ class AuthService extends BaseService {
     return await this.model.findUnique({ where: { username } });
   }
 
+  generateAccessToken(user) {
+    const secretKey = process.env.JWT_SECRET;
+    const expiresIn = process.env.JWT_EXPIRATION || '15m';
+    return jwt.sign({ id: user.id }, secretKey, { expiresIn });
+  }
+
+  generateRefreshToken(user) {
+    const secretKey = process.env.JWT_SECRET;
+    const expiresIn = process.env.JWT_REFRESH_EXPIRATION || '1h';
+    return jwt.sign({ id: user.id }, secretKey, { expiresIn });
+  }
+
   async authenticate(username, password) {
     const user = await this.findByUsername(username);
 
@@ -25,14 +37,16 @@ class AuthService extends BaseService {
       throw new Error('Invalid credentials');
     }
 
-    const token = jwt.sign({ id: user.id }, 'your_secret_key', { expiresIn: '1h' });
+    const accessToken = this.generateAccessToken(user);
+    const refreshToken = this.generateRefreshToken(user);
 
+    // Optionally store the refresh token in the database
     await this.model.update({
       where: { id: user.id },
-      data: { token },
+      data: { refreshToken },
     });
 
-    return { token, userId: user.id };
+    return { accessToken, refreshToken, userId: user.id };
   }
 }
 
